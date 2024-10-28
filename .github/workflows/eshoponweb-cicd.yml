@@ -1,11 +1,13 @@
 name: eShopOnWeb Build and Test
 
 #Triggers (uncomment line below to use it)
-on:   
+on:  
   push:  
     branches:  
-      - main  # Trigger on push to the main branch  
-  workflow_dispatch:  # Allow manual triggering  
+      - main  # Change this to the branch you want to trigger on, for example, "main" or "develop"  
+  pull_request:  
+    branches:  
+      - main  # Trigger on pull requests targeting the main branch  
 #on: [push, workflow_dispatch]
 
 #Environment variables https://docs.github.com/en/actions/learn-github-actions/environment-variables
