@@ -1,22 +1,15 @@
 name: eShopOnWeb Build and Test
 
 #Triggers (uncomment line below to use it)
-#on:  
- # push:  
-  #  branches:  
-   #   - main  # Change this to the branch you want to trigger on, for example, "main" or "develop"  
- # pull_request:  
- #   branches:  
-  #    - main  # Trigger on pull requests targeting the main branch  
 on: [push, workflow_dispatch]
 
 #Environment variables https://docs.github.com/en/actions/learn-github-actions/environment-variables
 env:
-  RESOURCE-GROUP: rg-eshoponweb-NAME
+  RESOURCE-GROUP: rg-eshoponweb-dev
   LOCATION: westeurope
   TEMPLATE-FILE: infra/webapp.bicep
   SUBSCRIPTION-ID: YOUR-SUBS-ID
-  WEBAPP-NAME: eshoponweb-webapp-NAME
+  WEBAPP-NAME: eshoponweb-webapp-unique123
 
 
 jobs:
@@ -82,9 +75,9 @@ jobs:
     - name: Azure Login
       uses: azure/login@v2
       with:
-        creds: '{"clientId":"${{ secrets.AZURE_CLIENT_ID }}","clientSecret":"${{ secrets.AZURE_CLIENT_SECRET }}","tenantId":"${{ secrets.AZURE_TENANT_ID }}"}'     
+        creds: '{ clientId: ${{ secrets.AZURE_CLIENT_ID }}, tenantId: ${{ secrets.AZURE_TENANT_ID }} }'     
       # Deploy the Azure Web App using other steps...  
-       # ${{ secrets.AZURE_CREDENTIALS }}
+       #${{ secrets.AZURE_CREDENTIALS }}
            
     # Deploy Azure WebApp using Bicep file
     - name: deploy
